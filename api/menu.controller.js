@@ -5,7 +5,9 @@ import DishDAO from '../dao/dishDAO.js';
 
 export default class MenuController {
   static async apiGetDishes(req, res, next) {
+    const { dishesList } = await DishDAO.getDishes();
     let response = {
+      dishes: dishesList,
     };
     res.json(response);
   }
