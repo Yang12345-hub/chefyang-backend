@@ -2,7 +2,7 @@
 // Handles menu-related APIs like listing dishes and showing dish details
 
 import DishDAO from '../dao/dishDAO.js';
-import OrderDAO from '../dao/orderDAO.js';
+import CartDAO from '../dao/cartDAO.js';
 
 export default class MenuController {
   static async apiGetDishes(req, res, next) {
@@ -16,7 +16,7 @@ export default class MenuController {
   static async apiGetDishById(req, res, next) {
     try {
       let id = req.params.id || {};
-      let dish = {};
+      let dish = Dish;
       if (!dish) {
         res.status(404).json({ error: 'not found' });
         return;
@@ -31,7 +31,7 @@ export default class MenuController {
   static async apiGetCartByUserId(req, res, next) {
     try {
       let id = req.params.userId || {};
-      let cart = await OrderDAO.apiGetCartByUserId(id);
+      let cart = await CartDAO.apiGetCartByUserId(id);
       if (!cart) {
         res.status(404).json({ error: 'not found' });
         return;
@@ -46,11 +46,12 @@ export default class MenuController {
   static async apiUpsertCart(req, res, next) {
     try {
       const userId = req.body.userId;
-      const itemIds = req.body.itemIds;
+      const items = req.body.items;
+      const cartId = req.body.cartId;
 
-      const cartResponse = await OrderDAO.upsertCart(
+      const cartResponse = await CartDAO.upsertCart(
         userId,
-        {itemIds},
+        {items, cartId},
       );
 
       var { error } = cartResponse;
