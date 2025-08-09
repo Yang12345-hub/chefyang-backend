@@ -11,6 +11,7 @@ const router = express.Router()
 router.route('/stores').get(StoreController.apiGetStores)
 router.route('/menu').get(MenuController.apiGetDishes)
 router.route('/menu/:id').get(MenuController.apiGetDishById)
-
+router.route('/cart/:userId').get(MenuController.apiGetCartByUserId)
+router.route('/cart/').post(MenuController.apiUpsertCart)
 
 export default router
