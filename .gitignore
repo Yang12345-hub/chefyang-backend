@@ -1,3 +1,4 @@
 node_modules/
 .env
 chefyang-backend.yaml
+sync_db.sh

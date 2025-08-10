@@ -16,3 +16,6 @@
 
 # Node.js dependencies:
 node_modules/
+
+# Sync database script
+sync_db.sh
