@@ -16,7 +16,7 @@ export default class MenuController {
   static async apiGetDishById(req, res, next) {
     try {
       let id = req.params.id || {};
-      let dish = Dish;
+      let dish = await DishDAO.getDishes({ dishId: id });
       if (!dish) {
         res.status(404).json({ error: 'not found' });
         return;

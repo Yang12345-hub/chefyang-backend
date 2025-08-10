@@ -1,4 +1,6 @@
 // dishesDAO.js
+import { ObjectId } from 'mongodb';
+
 let dishesCollection;
 
 export default class DishesDAO {
@@ -14,10 +16,14 @@ export default class DishesDAO {
     }
   }
 
-  static async getDishes({} = {}) {
+  static async getDishes({ dishId } = {}) {
     let cursor;
     try {
-      cursor = await dishesCollection.find({})
+      const query = {
+        ...(dishId && { _id: new ObjectId(dishId) })
+      };
+
+      cursor = await dishesCollection.find(query)
       const dishesList = await cursor.toArray();
       return { dishesList };
     } catch (e) {
