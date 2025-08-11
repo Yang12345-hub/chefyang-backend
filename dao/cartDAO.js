@@ -1,4 +1,6 @@
 // cartDAO.js
+import { ObjectId } from 'mongodb';
+
 let cartsCollection;
 
 
@@ -18,7 +20,8 @@ export default class CartDAO {
 
   static async getCart(userId) {
     try {
-      return await cartsCollection.find({userId}) || { itemIds: [] };
+      let cart = await cartsCollection.findOne({userId});
+      return cart || { userId };
     } catch (e) {
       console.error(`Unable to get cart by ID: ${e}`);
       throw e;
@@ -29,7 +32,7 @@ export default class CartDAO {
     try {
       const filter = { userId }; 
       if (data.cartId) {
-        filter._id = ObjectId(data.cartId);
+        filter._id = new ObjectId(data.cartId);
       }
       const update = {
         $set: {

@@ -31,7 +31,7 @@ export default class MenuController {
   static async apiGetCartByUserId(req, res, next) {
     try {
       let id = req.params.userId || {};
-      let cart = await CartDAO.apiGetCartByUserId(id);
+      let cart = await CartDAO.getCart(id);
       if (!cart) {
         res.status(404).json({ error: 'not found' });
         return;

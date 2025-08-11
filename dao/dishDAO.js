@@ -23,7 +23,7 @@ export default class DishesDAO {
         ...(dishId && { _id: new ObjectId(dishId) })
       };
 
-      cursor = await dishesCollection.find(query)
+      cursor = await dishesCollection.find(query);
       const dishesList = await cursor.toArray();
       return { dishesList };
     } catch (e) {
