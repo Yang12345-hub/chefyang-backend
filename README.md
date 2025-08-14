@@ -1,5 +1,10 @@
 # Chef Yang's Bistro App Backend
 
+# Iteration 3
+
+* Support get dish by id. 
+* Fix getCart dao.  
+
 # Iteration 2
 
 * Impmenet cart controller and dao.   
