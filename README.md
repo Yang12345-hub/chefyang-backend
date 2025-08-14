@@ -1,5 +1,11 @@
 # Chef Yang's Bistro App Backend
 
+# Iteration 2
+
+* Impmenet cart controller and dao.   
+* Fix cart upsert handler. 
+
+
 # Iteration 1
 
 * Initiated backend server
